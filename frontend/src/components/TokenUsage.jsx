@@ -1,7 +1,7 @@
 import React from 'react';
-import { Activity, TrendingUp } from 'lucide-react';
+import { Activity, TrendingUp, RotateCcw } from 'lucide-react';
 
-const TokenUsage = ({ usage }) => {
+const TokenUsage = ({ usage, onResetSession }) => {
   const formatNumber = (num) => {
     if (num >= 1000000) {
       return (num / 1000000).toFixed(1) + 'M';
@@ -49,6 +49,18 @@ const TokenUsage = ({ usage }) => {
         </div>
         <div className="text-xs text-gray-500">Est. Cost</div>
       </div>
+
+      {/* Reset Session Button */}
+      {usage.session_tokens > 0 && (
+        <button
+          onClick={onResetSession}
+          className="flex items-center space-x-1 px-2 py-1 text-xs text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded transition-colors"
+          title="Reset session tokens"
+        >
+          <RotateCcw className="h-3 w-3" />
+          <span>Reset Session</span>
+        </button>
+      )}
     </div>
   );
 };

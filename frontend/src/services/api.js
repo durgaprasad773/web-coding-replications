@@ -41,6 +41,11 @@ export const getTokenUsage = async () => {
   return response.data;
 };
 
+export const resetSessionTokens = async () => {
+  const response = await api.post('/reset-session-tokens');
+  return response.data;
+};
+
 export const generateReplicas = async (data) => {
   const response = await api.post('/generate-replicas', data);
   return response.data;

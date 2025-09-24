@@ -5,7 +5,7 @@ import FileUpload from './components/FileUpload';
 import ReplicaForm from './components/ReplicaForm';
 import ResultsDisplay from './components/ResultsDisplay';
 import TokenUsage from './components/TokenUsage';
-import { generateReplicas, downloadExcel, getTokenUsage } from './services/api';
+import { generateReplicas, downloadExcel, getTokenUsage, resetSessionTokens } from './services/api';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -69,7 +69,19 @@ function App() {
     }
   };
 
-
+  const handleResetSession = async () => {
+    try {
+      const result = await resetSessionTokens();
+      if (result.success) {
+        setTokenUsage(result.current_usage);
+        toast.success('Session tokens reset successfully!');
+      } else {
+        toast.error('Failed to reset session tokens');
+      }
+    } catch (error) {
+      toast.error(`Failed to reset session tokens: ${error.message}`);
+    }
+  };
 
   const resetProcess = () => {
     setCurrentStep(1);
@@ -90,7 +102,7 @@ function App() {
                 Web Coding Replication
               </h1>
             </div>
-            <TokenUsage usage={tokenUsage} />
+            <TokenUsage usage={tokenUsage} onResetSession={handleResetSession} />
           </div>
         </div>
       </header>

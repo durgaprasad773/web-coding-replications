@@ -13,6 +13,8 @@ from langchain.chains import LLMChain
 import tiktoken
 from dotenv import load_dotenv
 import random
+import sqlite3
+from contextlib import contextmanager
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,11 +22,77 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# Token tracking
-token_usage = {
-    'session_tokens': 0,
-    'total_tokens': 0
-}
+# Database setup for persistent token tracking
+DB_FILE = 'token_tracking.db'
+
+@contextmanager
+def get_db_connection():
+    """Context manager for database connections"""
+    conn = sqlite3.connect(DB_FILE)
+    conn.row_factory = sqlite3.Row
+    try:
+        yield conn
+    finally:
+        conn.close()
+
+def init_database():
+    """Initialize the database with token tracking table"""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS token_usage (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                session_id TEXT UNIQUE DEFAULT 'main',
+                session_tokens INTEGER DEFAULT 0,
+                total_tokens INTEGER DEFAULT 0,
+                last_updated DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        # Insert default session if it doesn't exist
+        cursor.execute('''
+            INSERT OR IGNORE INTO token_usage (session_id, session_tokens, total_tokens)
+            VALUES ('main', 0, 0)
+        ''')
+        conn.commit()
+
+def get_token_usage():
+    """Get current token usage from database"""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT session_tokens, total_tokens FROM token_usage WHERE session_id = ?', ('main',))
+        row = cursor.fetchone()
+        if row:
+            return {'session_tokens': row[0], 'total_tokens': row[1]}
+        return {'session_tokens': 0, 'total_tokens': 0}
+
+def update_token_usage(session_tokens_increment=0, total_tokens_increment=0):
+    """Update token usage in database"""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            UPDATE token_usage 
+            SET session_tokens = session_tokens + ?,
+                total_tokens = total_tokens + ?,
+                last_updated = CURRENT_TIMESTAMP
+            WHERE session_id = ?
+        ''', (session_tokens_increment, total_tokens_increment, 'main'))
+        conn.commit()
+
+def reset_session_tokens():
+    """Reset session tokens (useful for new sessions)"""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            UPDATE token_usage 
+            SET session_tokens = 0,
+                last_updated = CURRENT_TIMESTAMP
+            WHERE session_id = ?
+        ''', ('main',))
+        conn.commit()
+
+# Initialize database on startup
+init_database()
 
 # Load OpenAI API key from environment
 openai_api_key = os.getenv('OPENAI_API_KEY', '')
@@ -392,8 +460,48 @@ def test_json_parsing():
         return jsonify({"success": False, "error": str(e)}), 500
 
 @app.route('/api/token-usage', methods=['GET'])
-def get_token_usage():
-    return jsonify(token_usage)
+def get_token_usage_endpoint():
+    """Get current token usage from database"""
+    current_usage = get_token_usage()
+    return jsonify(current_usage)
+
+@app.route('/api/reset-session-tokens', methods=['POST'])
+def reset_session_tokens_endpoint():
+    """Reset session tokens to zero"""
+    try:
+        reset_session_tokens()
+        current_usage = get_token_usage()
+        return jsonify({
+            "success": True,
+            "message": "Session tokens reset successfully",
+            "current_usage": current_usage
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/api/token-history', methods=['GET'])
+def get_token_history():
+    """Get token usage history from database"""
+    try:
+        with get_db_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT session_id, session_tokens, total_tokens, last_updated 
+                FROM token_usage 
+                ORDER BY last_updated DESC
+            ''')
+            rows = cursor.fetchall()
+            history = [
+                {
+                    "session_id": row[0],
+                    "session_tokens": row[1], 
+                    "total_tokens": row[2],
+                    "last_updated": row[3]
+                } for row in rows
+            ]
+            return jsonify({"success": True, "history": history})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @app.route('/api/generate-replicas', methods=['POST'])
 def generate_replicas():
@@ -826,9 +934,9 @@ Use the THEME/HTML_START/HTML_END format exactly. Do not use JSON. Make this rep
         # Calculate total tokens
         total_request_tokens = input_tokens + total_output_tokens
 
-        # Update token tracking
-        token_usage['session_tokens'] += total_request_tokens
-        token_usage['total_tokens'] += total_request_tokens
+        # Update token tracking in database
+        update_token_usage(total_request_tokens, total_request_tokens)
+        current_usage = get_token_usage()
 
         # Set generated_replicas to our collected replicas
         generated_replicas = all_replicas
@@ -856,7 +964,7 @@ Use the THEME/HTML_START/HTML_END format exactly. Do not use JSON. Make this rep
                 "output_tokens": total_output_tokens,
                 "total_tokens": total_request_tokens
             },
-            "session_usage": token_usage
+            "session_usage": current_usage
         })
         
     except Exception as e:

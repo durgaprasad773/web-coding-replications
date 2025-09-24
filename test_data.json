@@ -1,0 +1,53 @@
+{
+  "question_text": "Build Your Custom Chocolate Pack - Test",
+  "short_text": "Custom Chocolate Pack",
+  "solutions_metadata": [
+    {
+      "code_details": [
+        {
+          "default_code": true,
+          "code_data": "<!DOCTYPE html>\n<html>\n<head><title>Test</title></head>\n<body><h1>Test HTML</h1><input type=\"text\" id=\"test-input\"><button id=\"calculate\">Calculate</button><span id=\"result\">0</span></body>\n</html>",
+          "language": "HTML"
+        },
+        {
+          "default_code": true,
+          "code_data": "body { font-family: Arial; background: #f0f0f0; }",
+          "language": "CSS"
+        },
+        {
+          "default_code": true,
+          "code_data": "document.getElementById('calculate').addEventListener('click', function() { document.getElementById('result').textContent = 'Clicked'; });",
+          "language": "JAVASCRIPT"
+        }
+      ]
+    }
+  ],
+  "test_cases": [
+    {
+      "id": "test-1",
+      "display_text": "When the Calculate button is clicked, it should show result",
+      "criteria": "document.getElementById('calculate').click(); const result = document.getElementById('result').textContent; assert(result === 'Clicked');",
+      "evaluation_type": "CLIENT_SIDE_EVALUATION",
+      "order": 1,
+      "reason_for_failure": null,
+      "weightage": 10
+    },
+    {
+      "id": "test-2",
+      "display_text": "Input field should exist",
+      "criteria": "const input = document.getElementById('test-input'); assert(input !== null);",
+      "evaluation_type": "CLIENT_SIDE_EVALUATION",
+      "order": 2,
+      "reason_for_failure": null,
+      "weightage": 10
+    }
+  ],
+  "tag_names": [
+    "SUB_TOPIC_CSS_FLEXBOX",
+    "COURSE_Modern_Responsive_Web_Design",
+    "MODULE_Introduction_to_CSS_Flexbox",
+    "UNIT_Introduction_to_CSS_Flexbox"
+  ],
+  "replica_type": "webcoding",
+  "num_replicas": 3
+}

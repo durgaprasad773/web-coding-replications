@@ -1,0 +1,126 @@
+[
+    {
+        "question_text": "### Custom Chocolate Pack\n\n**Objective**:\n\nIn this assignment, You have to build a `Custom Chocolate Pack` by applying JavaScript to the prefilled HTML and CSS.\n\n**Refer to the below video.**\n<video width=\"320\" height=\"240\" controls>\n<source src=\"https://nxtwave-website-media-files.s3.ap-south-1.amazonaws.com/placement-happenings/chocolate.mp4\" type=\"video/mp4\">\n  Your browser does not support the video tag.\n</video>\n\n\n<br/>\n\n<MultiLineWarning>\n    - Don't edit the prefilled code. Just apply JavaScript functionality to the prefilled HTML and CSS to make the website dynamic.\n</MultiLineWarning>\n\nBy following the below instructions, achieve the JavaScript functionality.\n\n- When the `Calculate` button is clicked:\n  - If all the input fields have positive integer values, the program will calculate the `Total Price` and `Total Items`.\n   -  For Calculating \n   `Total Price` = (MilkChocolate Quantity _*_ 5) + (DarkChocolate Quantity _*_ 6) + (WhiteChocolate Quantity _*_ 4). \n   And the element having id =\"total-price\" should be replaced with Calculated Total Price.\n   - For Calculating `Total Items`= MilkChocolate Quantity+ DarkChocolate Quantity+ WhiteChocolate Quantity. \n   And the element having id =\"total-items\" should be replaced with Calculated Total Items.\n   - If the Calculated `Total Items` greater than 20 then the  text content of the element having id=\"total-items\" should be replaced with the text `\"Cart items should be below 20\"`  and the text content of the element having id=\"total-price\" should be replaced with the text `\"Invalid\"`.\n  \n  - If **any one of the input fields is left empty or negative or decimal value then the  `Calculate` button is clicked\n     - The text content of the element having id=\"total-items\" should be replaced with the text `\"Please Enter Valid Positive Integers\"`  and the text content of the element having id=\"total-price\" should be replaced with the text `\"Invalid\"`.\n\n\n<hr/>",
+        "question_id": "4b10c8cd-5a69-453a-9d6b-e787103118a3",
+        "short_text": "Custom Chocolate Pack",
+        "question_type": "HTML_CODING",
+        "language": "ENGLISH",
+        "skills": [],
+        "content_type": "MARKDOWN",
+        "toughness": "EASY",
+        "question_asked_by_companies_info": [],
+        "multimedia": [],
+        "default_code_metadata": [
+            {
+                "code_data": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Custom Chocolate Pack</title>\n\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Build Your Custom Chocolate Pack</h1>\n\n        <div id=\"chocolates-list\" class=\"chocolates-list\">\n            <div class=\"chocolate-item\">\n                <h3>Milk Chocolate</h3>\n                <p>Price: $5</p>\n                <input type=\"text\" id=\"milk-choco\" >\n            </div>\n            <div class=\"chocolate-item\">\n                <h3>Dark Chocolate</h3>\n                <p>Price: $6</p>\n                <input type=\"text\" id=\"dark-choco\" >\n            </div>\n            <div class=\"chocolate-item\">\n                <h3>White Chocolate</h3>\n                <p>Price: $4</p>\n                <input type=\"text\" id=\"white-choco\" >\n            </div>\n        </div>\n        <button id=\"calculate\">Calculate</button>\n\n        <div class=\"total-price\">\n            <h2>Total Price: <span id=\"total-price\">0</span></h2>\n            <h3>Total Items: <span id=\"total-items\">0</span></h3>\n        </div>\n    </div>\n\n</body>\n</html>\n",
+                "language": "HTML"
+            },
+            {
+                "code_data": "* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nbody {\n    font-family: Arial, sans-serif;\n    background-color: #f4f4f9;\n    padding: 20px;\n}\n\n.container {\n    max-width: 600px;\n    margin: 0 auto;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 8px;\n    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    padding:15px;\n    color: green;\n    text-align: center;\n    color: #333;\n}\n\n.chocolates-list {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n}\n\n.chocolate-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid #ddd;\n    padding: 10px 0;\n}\n\n.chocolate-item input {\n    width: 50px;\n    padding: 5px;\n    text-align: center;\n}\n\n.total-price {\n    margin-top: 20px;\n    text-align: center;\n    font-weight: bold;\n}\n\n\nbutton {\n    margin-top: 20px;\n    text-align: center;\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    width: 50%;\n    font-size: 16px;\n    display: inline-block;\n    text-align: center;\n    margin-left: 150px;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\n.total-price {\n    margin-top: 20px;\n    text-align: center;\n}\n\n.total-price h2,\n.total-price h3 {\n    margin: 5px 0;\n}",
+                "language": "CSS"
+            },
+            {
+                "code_data": "",
+                "language": "JAVASCRIPT"
+            }
+        ],
+        "solutions_metadata": [
+            {
+                "order": 1,
+                "title": {
+                    "content": "Custom Chocolate Pack",
+                    "content_type": "TEXT"
+                },
+                "description": {
+                    "content": "An approach of designing a Book Hub webpage.",
+                    "content_type": "TEXT"
+                },
+                "code_details": [
+                    {
+                        "default_code": true,
+                        "code_data": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Custom Chocolate Pack</title>\n\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Build Your Custom Chocolate Pack</h1>\n\n        <div id=\"chocolates-list\" class=\"chocolates-list\">\n            <div class=\"chocolate-item\">\n                <h3>Milk Chocolate</h3>\n                <p>Price: $5</p>\n                <input type=\"text\" id=\"milk-choco\" >\n            </div>\n            <div class=\"chocolate-item\">\n                <h3>Dark Chocolate</h3>\n                <p>Price: $6</p>\n                <input type=\"text\" id=\"dark-choco\" >\n            </div>\n            <div class=\"chocolate-item\">\n                <h3>White Chocolate</h3>\n                <p>Price: $4</p>\n                <input type=\"text\" id=\"white-choco\" >\n            </div>\n        </div>\n        <button id=\"calculate\">Calculate</button>\n\n        <div class=\"total-price\">\n            <h2>Total Price: <span id=\"total-price\">0</span></h2>\n            <h3>Total Items: <span id=\"total-items\">0</span></h3>\n        </div>\n    </div>\n\n</body>\n</html>\n",
+                        "language": "HTML"
+                    },
+                    {
+                        "default_code": true,
+                        "code_data": "* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nbody {\n    font-family: Arial, sans-serif;\n    background-color: #f4f4f9;\n    padding: 20px;\n}\n\n.container {\n    max-width: 600px;\n    margin: 0 auto;\n    background-color: #fff;\n    padding: 20px;\n    border-radius: 8px;\n    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    padding:15px;\n    color: green;\n    text-align: center;\n    color: #333;\n}\n\n.chocolates-list {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n}\n\n.chocolate-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid #ddd;\n    padding: 10px 0;\n}\n\n.chocolate-item input {\n    width: 50px;\n    padding: 5px;\n    text-align: center;\n}\n\n.total-price {\n    margin-top: 20px;\n    text-align: center;\n    font-weight: bold;\n}\n\n\nbutton {\n    margin-top: 20px;\n    text-align: center;\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    width: 50%;\n    font-size: 16px;\n    display: inline-block;\n    text-align: center;\n    margin-left: 150px;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\n.total-price {\n    margin-top: 20px;\n    text-align: center;\n}\n\n.total-price h2,\n.total-price h3 {\n    margin: 5px 0;\n}",
+                        "language": "CSS"
+                    },
+                    {
+                        "default_code": true,
+                        "code_data": "document.getElementById('calculate').addEventListener('click', function () {\n    const milkPrice = 5;\n    const darkPrice = 6;\n    const whitePrice = 4;\n\n    const milkValue = document.getElementById('milk-choco').value.trim();\n    const darkValue = document.getElementById('dark-choco').value.trim();\n    const whiteValue = document.getElementById('white-choco').value.trim();\n\n    // Helper function to check if the input is a valid non-negative integer string\n    function isValidInteger(value) {\n        const parsedValue = parseInt(value, 10);\n        return !isNaN(parsedValue) && parsedValue >= 0 && parsedValue.toString() === value;\n    }\n\n    if (\n        !isValidInteger(milkValue) ||\n        !isValidInteger(darkValue) ||\n        !isValidInteger(whiteValue)\n    ) {\n        document.getElementById('total-items').textContent = \"Please Enter Valid Positive Integers\";\n        document.getElementById('total-price').textContent = \"Invalid\";\n        return;\n    }\n\n    const milkQuantity = parseInt(milkValue, 10);\n    const darkQuantity = parseInt(darkValue, 10);\n    const whiteQuantity = parseInt(whiteValue, 10);\n\n    const totalItems = milkQuantity + darkQuantity + whiteQuantity;\n\n    if (totalItems > 20) {\n        document.getElementById('total-items').textContent = \"Cart items should be below 20\";\n        document.getElementById('total-price').textContent = \"Invalid\";\n        return;\n    }\n\n    const totalPrice =\n        milkQuantity * milkPrice +\n        darkQuantity * darkPrice +\n        whiteQuantity * whitePrice;\n\n    document.getElementById('total-items').textContent = totalItems;\n    document.getElementById('total-price').textContent = totalPrice;\n});\n",
+                        "language": "JAVASCRIPT"
+                    }
+                ]
+            }
+        ],
+        "hints": [],
+        "tag_names": [
+            "POOL_1",
+            "TOPIC_WEB_CODING",
+            "SUB_TOPIC_CSS_FLEXBOX",
+            "DIFFICULTY_EASY",
+            "SOURCE_GPT",
+            "IN_OFFLINE_EXAM",
+            "NIAT",
+            "IS_PRIVATE",
+            "4b10c8cd-5a69-453a-9d6b-e787103118a3",
+            "QUESTION_4b10c8cd",
+            "SET_1",
+            "MODULE_Introduction_to_CSS_Flexbox",
+            "UNIT_Introduction_to_CSS_Flexbox",
+            "COURSE_Modern_Responsive_Web_Design"
+        ],
+        "concept_tag_names": [],
+        "test_cases": [
+    {
+  "id": "c8b73c0a-bc0b-4c6e-8d91-3a7c78c2ecf4",
+  "display_text": "When the 'Calculate' button is clicked with empty inputs for milk, dark, and white chocolate, the total price should show 'Invalid' and total items should prompt 'Please Enter Valid Positive Integers'.",
+  "criteria": "function testGivenInstructions() {\n  const milkChoco =\n    $('#htmlPreview')\n      .find('#milk-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'milk-choco').length === 1;\n\n  const darkChoco =\n    $('#htmlPreview')\n      .find('#dark-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'dark-choco').length === 1;\n\n  const whiteChoco =\n    $('#htmlPreview')\n      .find('#white-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'white-choco').length === 1;\n\n  const isCalculateBtnExists =\n    $('#htmlPreview')\n      .find('button')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'calculate').length === 1;\n\n  const istotalPrice =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-price').length === 1;\n\n  const istotalItems =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-items').length === 1;\n\n  const isGivenInstructionsPassed =\n    milkChoco &&\n    darkChoco &&\n    whiteChoco &&\n    isCalculateBtnExists &&\n    istotalPrice &&\n    istotalItems;\n\n  assert(isGivenInstructionsPassed === true);\n  return isGivenInstructionsPassed;\n}\n\nfunction testCalculate() {\n  const milkChocoInput = $('#milk-choco');\n  const darkChocoInput = $('#dark-choco');\n  const whiteChocoInput = $('#white-choco');\n  const calculateBtn = $('#calculate');\n  const totalPrice = $('#total-price');\n  const totalItems = $('#total-items');\n\n  milkChocoInput.val('');\n  darkChocoInput.val('');\n  whiteChocoInput.val('');\n  calculateBtn.click();\n\n  const testCase_1 =\n    totalPrice.text() === 'Invalid' && totalItems.text() === 'Please Enter Valid Positive Integers';\n  const expectedOutput = testCase_1;\n\n  assert(expectedOutput === true);\n}\n\nconst isGivenInstructionsPassed = testGivenInstructions();\nif (isGivenInstructionsPassed) {\n  testCalculate();\n}",
+  "evaluation_type": "CLIENT_SIDE_EVALUATION",
+  "order": 1,
+  "reason_for_failure": null,
+  "weightage": 10
+},
+{
+  "id": "e52b4f6e-f7b9-4b6f-b39d-b2d11cf14b92",
+  "display_text": "When the 'Calculate' button is clicked and the total number of chocolates exceeds the allowed limit, the output should show 'Invalid' and a message prompting that the cart items should be below 20.",
+  "criteria": "function testGivenInstructions() {\n  const milkChoco =\n    $('#htmlPreview')\n      .find('#milk-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'milk-choco').length === 1;\n\n  const darkChoco =\n    $('#htmlPreview')\n      .find('#dark-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'dark-choco').length === 1;\n\n  const whiteChoco =\n    $('#htmlPreview')\n      .find('#white-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'white-choco').length === 1;\n\n  const isCalculateBtnExists =\n    $('#htmlPreview')\n      .find('button')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'calculate').length === 1;\n\n  const istotalPrice =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-price').length === 1;\n\n  const istotalItems =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-items').length === 1;\n\n  const isGivenInstructionsPassed =\n    milkChoco &&\n    darkChoco &&\n    whiteChoco &&\n    isCalculateBtnExists &&\n    istotalPrice &&\n    istotalItems;\n\n  assert(isGivenInstructionsPassed === true);\n  return isGivenInstructionsPassed;\n}\n\nfunction testCalculate() {\n  const milkChocoInput = $('#milk-choco');\n  const darkChocoInput = $('#dark-choco');\n  const whiteChocoInput = $('#white-choco');\n  const calculateBtn = $('#calculate');\n  const totalPrice = $('#total-price');\n  const totalItems = $('#total-items');\n\n  milkChocoInput.val(30);\n  darkChocoInput.val(40);\n  whiteChocoInput.val(50);\n  calculateBtn.click();\n\n  const testCase_1 =\n    totalPrice.text() === 'Invalid' && totalItems.text() === 'Cart items should be below 20';\n  const expectedOutput = testCase_1;\n\n  assert(expectedOutput === true);\n}\n\nconst isGivenInstructionsPassed = testGivenInstructions();\nif (isGivenInstructionsPassed) {\n  testCalculate();\n}",
+  "evaluation_type": "CLIENT_SIDE_EVALUATION",
+  "order": 2,
+  "reason_for_failure": null,
+  "weightage": 10
+},
+{
+  "id": "a73a3029-845b-4b64-b87f-d627ed2c991e",
+  "display_text": "When the 'Calculate' button is clicked with valid chocolate quantities within limit, the total price and total items should be displayed correctly.",
+  "criteria": "function testGivenInstructions() {\n  const milkChoco =\n    $('#htmlPreview')\n      .find('#milk-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'milk-choco').length === 1;\n\n  const darkChoco =\n    $('#htmlPreview')\n      .find('#dark-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'dark-choco').length === 1;\n\n  const whiteChoco =\n    $('#htmlPreview')\n      .find('#white-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'white-choco').length === 1;\n\n  const isCalculateBtnExists =\n    $('#htmlPreview')\n      .find('button')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'calculate').length === 1;\n\n  const istotalPrice =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-price').length === 1;\n\n  const istotalItems =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-items').length === 1;\n\n  const isGivenInstructionsPassed =\n    milkChoco &&\n    darkChoco &&\n    whiteChoco &&\n    isCalculateBtnExists &&\n    istotalPrice &&\n    istotalItems;\n\n  assert(isGivenInstructionsPassed === true);\n  return isGivenInstructionsPassed;\n}\n\nfunction testCalculate() {\n  const milkChocoInput = $('#milk-choco');\n  const darkChocoInput = $('#dark-choco');\n  const whiteChocoInput = $('#white-choco');\n  const calculateBtn = $('#calculate');\n  const totalPrice = $('#total-price');\n  const totalItems = $('#total-items');\n\n  milkChocoInput.val(3);\n  darkChocoInput.val(2);\n  whiteChocoInput.val(1);\n  calculateBtn.click();\n\n  const testCase_1 =\n    totalPrice.text() == '31' && totalItems.text() === '6';\n  const expectedOutput = testCase_1;\n\n  assert(expectedOutput === true);\n}\n\nconst isGivenInstructionsPassed = testGivenInstructions();\nif (isGivenInstructionsPassed) {\n  testCalculate();\n}",
+  "evaluation_type": "CLIENT_SIDE_EVALUATION",
+  "order": 3,
+  "reason_for_failure": null,
+  "weightage": 10
+},
+{
+  "id": "3f084bb6-2f1a-4b92-9516-19faea7e3e19",
+  "display_text": "When the 'Calculate' button is clicked with non-integer chocolate quantities, an error message should be shown indicating invalid input.",
+  "criteria": "function testGivenInstructions() {\n  const milkChoco =\n    $('#htmlPreview')\n      .find('#milk-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'milk-choco').length === 1;\n\n  const darkChoco =\n    $('#htmlPreview')\n      .find('#dark-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'dark-choco').length === 1;\n\n  const whiteChoco =\n    $('#htmlPreview')\n      .find('#white-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'white-choco').length === 1;\n\n  const isCalculateBtnExists =\n    $('#htmlPreview')\n      .find('button')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'calculate').length === 1;\n\n  const istotalPrice =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-price').length === 1;\n\n  const istotalItems =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-items').length === 1;\n\n  const isGivenInstructionsPassed =\n    milkChoco &&\n    darkChoco &&\n    whiteChoco &&\n    isCalculateBtnExists &&\n    istotalPrice &&\n    istotalItems;\n\n  assert(isGivenInstructionsPassed === true);\n  return isGivenInstructionsPassed;\n}\n\nfunction testCalculate() {\n  const milkChocoInput = $('#milk-choco');\n  const darkChocoInput = $('#dark-choco');\n  const whiteChocoInput = $('#white-choco');\n  const calculateBtn = $('#calculate');\n  const totalPrice = $('#total-price');\n  const totalItems = $('#total-items');\n\n  milkChocoInput.val(3.5);\n  darkChocoInput.val(2.5);\n  whiteChocoInput.val(1.5);\n  calculateBtn.click();\n\n  const testCase_1 =\n    totalPrice.text() == 'Invalid' && totalItems.text() === 'Please Enter Valid Positive Integers';\n  const expectedOutput = testCase_1;\n\n  assert(expectedOutput === true);\n}\n\nconst isGivenInstructionsPassed = testGivenInstructions();\nif (isGivenInstructionsPassed) {\n  testCalculate();\n}",
+  "evaluation_type": "CLIENT_SIDE_EVALUATION",
+  "order": 4,
+  "reason_for_failure": null,
+  "weightage": 10
+},
+{
+  "id": "e5d1b20c-c7c4-4c1a-9d5a-234edf46d7d8",
+  "display_text": "When the 'Calculate' button is clicked with negative input values, an error message should be shown indicating only positive integers are valid.",
+  "criteria": "function testGivenInstructions() {\n  const milkChoco =\n    $('#htmlPreview')\n      .find('#milk-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'milk-choco').length === 1;\n\n  const darkChoco =\n    $('#htmlPreview')\n      .find('#dark-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'dark-choco').length === 1;\n\n  const whiteChoco =\n    $('#htmlPreview')\n      .find('#white-choco')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'white-choco').length === 1;\n\n  const isCalculateBtnExists =\n    $('#htmlPreview')\n      .find('button')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'calculate').length === 1;\n\n  const istotalPrice =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-price').length === 1;\n\n  const istotalItems =\n    $('#htmlPreview')\n      .find('span')\n      .toArray()\n      .filter((element) => $(element).attr('id') === 'total-items').length === 1;\n\n  const isGivenInstructionsPassed =\n    milkChoco &&\n    darkChoco &&\n    whiteChoco &&\n    isCalculateBtnExists &&\n    istotalPrice &&\n    istotalItems;\n\n  assert(isGivenInstructionsPassed === true);\n  return isGivenInstructionsPassed;\n}\n\nfunction testCalculate() {\n  const milkChocoInput = $('#milk-choco');\n  const darkChocoInput = $('#dark-choco');\n  const whiteChocoInput = $('#white-choco');\n  const calculateBtn = $('#calculate');\n  const totalPrice = $('#total-price');\n  const totalItems = $('#total-items');\n\n  milkChocoInput.val(-5);\n  darkChocoInput.val(-5);\n  whiteChocoInput.val(-5);\n  calculateBtn.click();\n\n  const testCase_1 =\n    totalPrice.text() == 'Invalid' && totalItems.text() === 'Please Enter Valid Positive Integers';\n  const expectedOutput = testCase_1;\n\n  assert(expectedOutput === true);\n}\n\nconst isGivenInstructionsPassed = testGivenInstructions();\nif (isGivenInstructionsPassed) {\n  testCalculate();\n}",
+  "evaluation_type": "CLIENT_SIDE_EVALUATION",
+  "order": 5,
+  "reason_for_failure": null,
+  "weightage": 10
+}
+
+
+
+]
+    }
+]

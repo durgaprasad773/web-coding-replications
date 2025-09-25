@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://pdurgaprasad773.pythonanywhere.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
